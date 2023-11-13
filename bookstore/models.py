@@ -9,14 +9,14 @@ class Customer(models.Model):
     avatar = models.ImageField(blank=True,default='user_img.png',upload_to='profile_images')
 
     def __str__(self) :
-        return f'Id: {super().pk}, firstName= {self.user}, creation_date= {self.creation_date}'
+        return f"{self.user}"
     
 class Tag(models.Model):
     name = models.CharField(max_length=15)
     
     
     def __str__ (self):
-        return f"id: {self.pk}, name: {self.name}"
+        return  self.name
     
    
 class Book(models.Model):
@@ -37,7 +37,7 @@ class Book(models.Model):
     
     def __str__(self):
         tags = ', '.join(tag.name for tag in self.tag.all())
-        return f'Id: {super().pk}, name: {self.name}, price: {self.price}, category: {self.category}, tags: {tags}'
+        return self.name
     
 
 class Order(models.Model):
@@ -55,5 +55,5 @@ class Order(models.Model):
     creation_date = models.DateTimeField(auto_now_add=True)
     status = models.CharField(max_length=100, choices=STATUS)
     def __str__(self):
-        return f'Id: {super().pk}, status: {self.status}, creation_date: {self.creation_date}'
+        return self.status
     
