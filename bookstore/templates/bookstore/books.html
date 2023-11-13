@@ -1,0 +1,52 @@
+{% extends "bookstore/main.html" %}
+
+{% block content %}
+
+
+<h1 class="pt-5 ps-5">Books</h1>
+<div class="container pt-3">
+
+  <div class="row">
+    <div class="col">
+      Total Books:    <span class="badge rounded-pill text-bg-primary">{{total_books}}</span> 
+    </div>
+  </div>
+</div>
+<div class="container pt-2">
+<table class="table  table-striped table-hover  shadow ">
+    <thead>
+      <tr>
+        <th scope="col">N°</th>
+        <th scope="col">name</th>
+        <th scope="col">author</th>
+        <th scope="col">price</th>
+        <th scope="col">category</th>
+        <th scope="col">tag</th>
+        <th scope="col">creation_date</th>
+      </tr>
+    </thead>
+    <tbody>
+        
+      {% for item in books %}
+      <tr>
+        <th scope="row">{{item.pk}}</th>
+        <td>{{item.name}}</td>
+        <td>{{item.author}}</td>
+        <td>{{item.price}}</td>
+        <td>{{item.category}}</td>
+        <td>
+          {% comment %} {{ item.tag.all|join:", " }} {% endcomment %}
+          
+          {% for tag in item.tag.all %}
+                {{tag.name}}
+                {% if not forloop.last%}, {% endif %}
+            {% endfor %}
+          </td>
+        <td>{{item.creation_date}}</td>
+      </tr>
+      {% endfor %}
+      
+    </tbody>
+  </table>
+</div>
+{% endblock content %}

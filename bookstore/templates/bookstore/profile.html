@@ -1,0 +1,76 @@
+{% extends "bookstore/main.html" %}
+{% load static %}
+{% block content %}
+
+<h5 class= "pt-5 ps-5 fs-4 fw-bold">Profile </h5>
+
+
+
+
+{% comment %} <form action="" method= "GET">
+  
+  <input class="form-control me-2" type="search" placeholder="Search" name="query" aria-label="Search">
+  {% comment  1%} {{order_filter.form}} {% endcomment 1 %}
+  <div class= " pt-3">
+  <button class="btn btn-outline-success " type="submit">Search</button>
+  </div>
+</form> {% endcomment %}
+
+
+<div class="container fs-5 pt-3 pb-3">
+   
+    <div class="row  align-items-start">
+      <div class="col">
+        Orders: <span class="badge rounded-pill text-bg-primary"> {{total_orders}}</span> 
+      </div>
+      <div class="col-md-3 offset-md-1">
+        Pending: <span class="badge rounded-pill text-bg-danger">{{pending_orders}} </span>
+       </div>
+      <div class="col">
+        Delivered:   <span class="badge rounded-pill text-bg-success"> {{delivered_orders}} </span>
+      </div>
+      <div class="col">
+        In Progress: <span class="badge rounded-pill text-bg-warning"> {{in_progress_orders}} </span>
+       </div>
+      <div class="col">
+        Out Of Order: <span class="badge rounded-pill text-bg-secondary"> {{out_of_orders}} </span>
+      </div>
+      
+    </div>
+</div>
+
+<div class="container"> 
+
+<table class="table shadow">
+    <thead class="table-light">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Book</th>
+        <th scope="col">Category</th>
+        <th scope="col">Status</th>
+        <th scope="col">Creation Date</th>
+    
+        {% comment %} <th scope="col">status</th> {% endcomment %}
+      </tr>
+    </thead>
+    <tbody>
+        {% for item in customer_orders%}
+        <tr>
+            <th scope="row">{{item.pk}}</th>
+            <td>{{item.book.name}}</td>
+            <td>{{item.book.category}}</td>
+            <td>{{item.status}}</td>
+            <td>{{item.creation_date}}</td>
+            
+        </tr>
+      {% endfor %}
+      
+    </tbody>
+  </table>
+  <div>
+
+
+
+
+
+{% endblock content %}

@@ -1,0 +1,115 @@
+{% extends "bookstore/main.html" %}
+
+{% block content %}
+
+<h5 class="ps-5 pt-5 fw-bold fs-3" > Dashboard </h5>
+
+<div class="container pt-5">
+  <div class="row">
+    <div class="col">
+      Total Orders:    <span class="badge rounded-pill text-bg-primary">{{total_orders}}</span> 
+    </div>
+    <div class="col">
+      Pending Orders: <span class="badge rounded-pill text-bg-danger">{{pending_orders}}</span> 
+    </div>
+    <div class="col">
+      Delivered Orders: <span class="badge rounded-pill text-bg-success">{{delivered_orders}}</span> 
+    </div>
+    <div class="col">
+      In Progress Orders: <span class="badge rounded-pill text-bg-warning">{{in_progress_orders}}</span> 
+    </div>
+    <div class="col">
+      Out of Orders: <span class="badge rounded-pill text-bg-secondary">{{out_of_orders}}</span>
+    </div>
+  </div>
+</div>
+
+<div class="container  pt-5 ">
+    <div class="row">
+      <div class="col">
+        <div class="card"  >
+            {% comment %} <img src="..." class="card-img-top" alt="..."> {% endcomment %}
+            <div class="card-body">
+              <h5 class="card-title fs-3 fw-semibold">Customers</h5>
+              <a class="btn btn-success" href="{% url 'create_customer'%}" role="button">Create</a>
+              <table class="table  table-striped table-hover  ">
+                <thead>
+                  <tr>
+                    <th scope="col">N°</th>
+                    <th scope="col">firstName</th>
+                    <th scope="col">lastName</th>
+                    <th scope="col">phone</th>
+                    <th scope="col">address</th>
+                    <th scope="col">creation date</th>
+                    <th scope="col">Actions</th>
+
+                  </tr>
+                </thead>
+                <tbody>
+                    
+                  {% for item in customers %}
+                  <tr>
+                    <th scope="row"><a href="{% url 'customer' item.pk%}">{{item.pk}}</a></th>
+                    <td>{{item.user.first_name}}</td>
+                    <td>{{item.user.last_name}}</td>
+                    <td>{{item.phone}}</td>
+                    <td>{{item.address}}</td>
+                    <td>{{item.creation_date}}</td>
+                    <td>
+                      <a href="{% url 'update_customer' item.pk %}"><i class="fa-solid fa-pen-to-square fa-bounce fa-lg" style="color: #2e5fb2;"></i></a>
+                      <a href="{% url 'delete_customer' item.pk %}"><i class="fa-regular fa-trash-can fa-shake fa-lg" style="color: #f52424;"></i></a> 
+                    </td>
+                  </tr>
+                  {% endfor %}
+                  
+                </tbody>
+              </table>
+              
+            </div>
+          </div>
+      </div>
+      <div class="col">
+        <div class="card" >
+            {% comment %} <img src="..." class="card-img-top" alt="..."> {% endcomment %}
+            <div class="card-body">
+              <h5 class="card-title fs-3 fw-bold">Orders</h5>
+              <a class="btn btn-success" href="{% url 'create_order' %}" role="button">Create</a>
+              <table class="table  table-striped table-hover  ">
+                <thead>
+                  <tr>
+                    <th scope="col">N°</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Customer</th>
+                    <th scope="col">Book</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    
+                  {% for item in orders %}
+                  <tr>
+                    <th scope="row">{{item.pk}}</th>
+                    <td>{{item.creation_date}}</td>
+                    <td >{{item.customer.user.first_name}} {{item.customer.user.last_name}}</td>
+                    <td>{{item.book.name}}</td>
+                    <td>{{item.status}}</td>
+                    <td>
+                      <a href="{% url 'update_order' item.pk %}">
+                        <i class="fa-solid fa-pen-to-square fa-bounce fa-lg" style="color: #2e5fb2;"></i></a>
+                      
+                      <a href="{% url 'delete_order' item.pk %}" >
+                        <i class="fa-regular fa-trash-can fa-shake fa-lg" style="color: #f52424;"></i></a>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+{% endblock content %}

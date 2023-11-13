@@ -1,0 +1,207 @@
+{% extends "bookstore/main.html" %}
+{% load static %}
+{% load widget_tweaks %}
+{% block content %}
+
+{% if form is not None %}
+<section class="position-absolute top-50 start-50 translate-middle ">
+  <!-- Background image -->
+  <div
+    class="bg-image rounded"
+    style="
+      background-image: url('https://htmlcolorcodes.com/assets/images/html-color-codes-color-tutorials.jpg');
+      margin-top: 98px;
+      margin-left: 50px;
+      height: 416px;
+      width: 697px;
+      background-position: center center;
+      background-size: cover;
+    "
+  ></div>
+  <div
+    class="card mx-4 mx-md-5 shadow"
+    style="
+      margin-top: -100px;
+      background: hsla(0, 0%, 100%, 0.8);
+      backdrop-filter: blur(20px);
+      height: 420px;
+      width: 700px;
+      margin-top: -418px;
+      margin-left: 50px;
+    "
+  >
+    <div class="card-body ">
+      <div class="pt-2">
+        <h2 class="fw-bold text-center">Create  a Customer</h2>
+      </div>
+      <div class="container pt-3">
+        <form action="" method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="w-100">
+
+
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                  <div class="form-outline">              
+                    <label class="from-label">{{form.first_name.label}}:</label>
+                    {{form.first_name | add_class:'form-control'}} 
+                  </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                  <div class="form-outline">
+                    <label class="from-label">{{form.last_name.label}}:</label>
+                    {{form.last_name | add_class:'form-control' }}
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6 mb-4">
+                  <div class="form-outline">              
+                    <label class="from-label">{{form.username.label}}:</label>
+                    {{form.username | add_class:'form-control' }}
+                  </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                  <div class="form-outline">
+                    <label class="from-label">{{form.email.label}}:</label>
+                    {{form.email | add_class:'form-control'}} 
+                  </div>
+                </div>
+              </div>
+            
+              <div class="row">
+                <div class="col-md-6 mb-4">
+                  <div class="form-outline">              
+                    <label class="from-label">{{form.password1.label}}:</label>
+                    {{form.password1 | add_class:'form-control' | attr:"placeholder:password"}}
+                  </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                  <div class="form-outline">
+                    <label class="from-label">{{form.password2.label}}:</label>
+                    {{form.password2 | add_class:'form-control' | attr:"placeholder:password confirmation"}}
+                  </div>
+                </div>
+              </div>
+          
+          </div>
+          <div
+            class="d-grid gap-2 w-75 position-absolute bottom-10 start-50 translate-middle-x pt-3"
+          >
+            <button class="btn btn-outline-success" type="submit">
+              Create a Customer
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+{% else %}
+
+<section class="position-absolute top-50 start-50 translate-middle ">
+  <!-- Background image -->
+  <div
+    class="bg-image rounded"
+    style="
+      background-image: url('https://htmlcolorcodes.com/assets/images/html-color-codes-color-tutorials.jpg');
+      margin-top: 100px;
+      margin-left: 50px;
+      height: 463px;
+      width: 697px;
+      background-position: center center;
+      background-size: cover;
+    "
+  ></div>
+  <div
+    class="card mx-4 mx-md-5 shadow"
+    style="
+      margin-top: -100px;
+      background: hsla(0, 0%, 100%, 0.8);
+      backdrop-filter: blur(20px);
+      height: 464px;
+      width: 700px;
+      margin-top: -463px;
+      margin-left: 50px;
+    "
+  >
+    <div class="card-body">
+      <div class="pt-2">
+        <h2 class="fw-bold text-center">Update a Customer</h2>
+      </div>
+      <div class="container pt-3">
+        <form action="" method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="w-100">
+
+
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                  <div class="form-outline">              
+                    <label class="from-label">{{user_form.first_name.label}}:</label>
+                    {{user_form.first_name | add_class:'form-control'}} 
+                  </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                  <div class="form-outline">
+                    <label class="from-label">{{user_form.last_name.label}}:</label>
+                    {{user_form.last_name | add_class:'form-control' }}
+                  </div>
+                </div>
+              </div>
+
+
+
+              <div class="row">
+                <div class="col-md-6 mb-4">
+                  <div class="form-outline">              
+                    <label class="from-label">{{user_form.username.label}}:</label>
+                    {{user_form.username | add_class:'form-control' }}
+                  </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                  <div class="form-outline">
+                    <label class="from-label">{{user_form.email.label}}:</label>
+                    {{user_form.email | add_class:'form-control'}} 
+                  </div>
+                </div>
+              </div>
+            
+              <div class="row">
+                <div class="col-md-6 mb-4">
+                  <div class="form-outline">              
+                    <label class="from-label">{{customer_form.phone.label}}:</label>
+                    {{customer_form.phone | add_class:'form-control' }}
+                  </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                  <div class="form-outline">
+                    <label class="from-label">{{customer_form.address.label}}:</label>
+                    {{customer_form.address | add_class:'form-control' }}
+                  </div>
+                </div>
+              </div>
+            
+            
+           
+            <label class="from-label">{{customer_form.avatar.label}}:</label>
+            {{customer_form.avatar }}
+          </div>
+          <div
+            class="d-grid gap-2 w-75 position-absolute bottom-10 start-50 translate-middle-x p-3"
+          >
+            <button class="btn btn-outline-success" type="submit">
+              Update Customer
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+{% endif %}
+{% endblock content %}

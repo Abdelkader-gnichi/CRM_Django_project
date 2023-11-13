@@ -1,0 +1,91 @@
+{% extends "bookstore/main.html" %}
+{% load static %}
+
+
+{% block content %}
+
+
+
+  <section class="position-absolute top-50 start-50 translate-middle ">
+    <!-- Background image -->
+    <div
+      class="bg-image rounded"
+      style="
+        background-image: url('https://htmlcolorcodes.com/assets/images/html-color-codes-color-tutorials.jpg');
+        margin-top: 100px;
+        margin-left: 50px;
+        height: 463px;
+        width: 697px;
+        background-position: center center;
+        background-size: cover;
+      "
+    ></div>
+    <div
+      class="card mx-4 mx-md-5 shadow"
+      style="
+        margin-top: -100px;
+        background: hsla(0, 0%, 100%, 0.8);
+        backdrop-filter: blur(20px);
+        height: 464px;
+        width: 700px;
+        margin-top: -463px;
+        margin-left: 50px;
+      "
+    >
+      <div class="card-body">
+        <div class="pt-2">
+          <h2 class="fw-bold text-center">
+            {% if "create_order" in request.path %} 
+              Create Order 
+            {% elif "update_order" in request.path %} 
+              Update Order
+            {% endif %}</h2>
+        </div>
+        <div class="container pt-3">
+          <form action="" method="POST" >
+            {% csrf_token %}
+
+            {% if form is not None %} 
+            <div class="w-100">
+                <div class="form-outline mb-4">
+                    <label class="form-label" for="form3Example3"> {{form.customer.label}}</label>
+                    {{form.customer}} 
+                </div>
+                <div class="form-outline mb-4">
+                    <label class="form-label" for="form3Example3"> {{form.book.label}}</label>
+                    {{form.book}} 
+                </div>
+                    <div class="form-outline mb-4">
+                    <label class="form-label" for="form3Example3"> {{form.status.label}}</label>
+                    {{form.status}} 
+                </div>
+            </div>
+            {% elif formset is not None %}
+            
+              {{formset.management_form}}
+            
+            
+            
+              {% for item in formset  %}
+                  {{item}} <br>
+              {% endfor %} 
+            
+            
+            
+            
+            {% endif %}
+            <div class="d-grid gap-2 w-75 position-absolute bottom-10 start-50 translate-middle-x pt-3">
+              <button class="btn btn-outline-success" type="submit">
+                {% if "create_order" in request.path %} 
+                  Create Order 
+                {% elif "update_order" in request.path %} 
+                  Update Order
+                {% endif %}</h2>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock content %}

@@ -1,0 +1,121 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+   
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>bookstore</title>
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        
+        <link rel='stylesheet' type="text/css" href="{% static '/css/bootstrap.min.css' %}">
+        <link rel='stylesheet' type="text/css" href="{% static '/css/style.css' %}">
+        
+    </head>
+    <body >
+<!-- Section: Design Block -->
+<section class="text-center">
+  <!-- Background image -->
+  <div class="p-5 bg-image" style="
+    background-image: url('https://mdbootstrap.com/img/new/textures/full/171.jpg' );
+    height: 300px;
+    background-position: center center;
+    background-size: cover;
+"></div>
+  <!-- Background image -->
+
+  <div class="card mx-4 mx-md-5 shadow-5-strong shadow " style="
+        margin-top: -100px;
+        background: hsla(0, 0%, 100%, 0.8);
+        backdrop-filter: blur(20px);
+        ">
+    <div class="card-body py-5 px-md-5">
+      <div class="row d-flex justify-content-center">
+        <div class="col-lg-8">
+          <h2 class="fw-bold mb-5">Sign up now</h2>
+          <form action='' method="POST">
+            {% csrf_token %}
+            <!-- 2 column grid layout with text inputs for the first and last names -->
+            <div class="row">
+              <div class="col-md-6 mb-4">
+                <div class="form-outline">
+                  <label for="{{ form.first_name.id }}" class="form-label">{{ form.first_name.label }}</label>
+                  {{ form.first_name }}
+                </div>
+              </div>
+              <div class="col-md-6 mb-4">
+                <div class="form-outline">
+                  <label for="{{form.last_name.id}}" class="form-label">{{form.last_name.label}}</label>
+                  {{form.last_name}}
+                </div>
+              </div>
+              <div class="col-md-6 mb-4">
+                <div class="form-outline">
+                  <label for="{{form.username.id}}" class="form-label">{{form.username.label}}</label>
+                  {{form.username}}
+                </div>
+              </div>
+              <!-- Email input -->
+              <div class="col-md-6 mb-4">
+                <div class="form-outline">
+                  <label for="{{form.email.id}}" class="form-label">{{form.email.label}}</label>
+                  {{form.email}}
+                </div>
+              </div>
+            </div>
+            <!-- Password1 input -->
+            <div class="form-outline mb-4">
+              <label for="{{form.password1.id}}" class="form-label">{{form.password1.label}}</label>
+              {{form.password1}}
+            </div>
+
+            <!-- Password2 input -->
+            <div class="form-outline mb-4">
+              <label for="{{form.password2.id}}" class="form-label">{{form.password2.label}}</label>
+              {{form.password2}}
+            </div>
+
+            <!-- Checkbox -->
+            <div class="d-flex justify-content-center mb-4">
+              <script src="https://www.google.com/recaptcha/api.js"></script>
+              <div class="g-recaptcha" data-sitekey="6Ldl5wEpAAAAAGcP64KUlS6M0Xqv9_PpWZuxhVCM"></div>
+
+            </div>           
+            <div class="d-flex justify-content-center mb-4">
+              {{form.errors}}
+            </div>
+
+            <!-- Submit button -->
+            <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-outline-primary  btn-block ">
+                  Sign up
+                </button>
+            </div>
+          </form>
+          <div class="pt-4 ">
+            <a href="{% url 'login' %}">Already registered?</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="container pt-4">
+</div>
+<!-- Section: Design Block -->
+
+  {% comment  %}
+  <br>
+  {% for msg in messages %} <strong>{{msg}} </strong> {% endfor %} {% endcomment %}
+  
+  
+
+   </body>
+</html>
+
+
+

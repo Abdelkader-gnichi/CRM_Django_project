@@ -1,0 +1,54 @@
+{% load static %}
+
+<div class=" " style="background: red;
+background-image: url('https://htmlcolorcodes.com/assets/images/html-color-codes-color-tutorials.jpg');
+
+height: 77px;
+
+background-position: center center;
+background-size: cover;">
+  
+<nav class="navbar navbar-expand-lg  shadow p-2   " style="background: hsla(0, 0%, 100%, 0.55);
+backdrop-filter: blur(30px);" >   
+    <div class="container-fluid ">
+      <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static '/assets/crm (3).png'%}" alt="Bootstrap" width="60" height="60"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          {% if request.user.is_staff or request.user.groups.all.0.name == 'admin' %}
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Dashboard</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{% url 'books'%}">Books</a>
+          </li>
+          {% endif %}
+
+          {% if  user.groups.all.0.name == 'customer' and user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{% url 'user_profile'%}">Profile</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{% url 'profile_info'%}">Profile Info</a>
+          </li>
+          {% endif %}
+          
+        </ul>
+        {% if user.is_authenticated %}
+          <div>
+            Welcome, <strong>{{request.user}}</strong>. <a class="active" href="{% url 'logout'%}">
+               Logout </a>
+          </div>
+        {% else %}
+          <div>
+           <a class="active" href="{% url 'login'%}"> <strong>Login</strong> </a>
+          </div>
+        {% endif %}
+      </div>
+    </div>  
+  </nav>
+</div>  

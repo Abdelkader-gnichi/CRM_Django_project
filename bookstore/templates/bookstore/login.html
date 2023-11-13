@@ -1,0 +1,89 @@
+{% comment %} {% extends "bookstore/main.html" %} {% endcomment %}
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+   
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>bookstore</title>
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        
+        <link rel='stylesheet' type="text/css" href="{% static '/css/bootstrap.min.css' %}">
+        <link rel='stylesheet' type="text/css" href="{% static '/css/style.css' %}">
+        
+    </head>
+    <body class="body">
+        
+<!-- Section: Design Block -->
+<section class="text-center text-lg-start">
+  <!-- Jumbotron -->
+  <div class="container py-4">
+    <div class="row g-0 align-items-center">
+      <div class="col-lg-6 mb-5 mb-lg-0">
+        <div class="card cascading-right" style="background: hsla(0, 0%, 100%, 0.55);
+            backdrop-filter: blur(30px);">
+          <div class="card-body p-5 shadow-5 text-center">
+            <h2 class="fw-bold mb-5">Login</h2>
+            <form action="" method="POST">
+              {% csrf_token %}
+              <div class="form-outline mb-4">
+                <input type="text" name="login" placeholder="username" class="form-control" />
+      
+              </div>
+
+              <!-- Password input -->
+              <div class="form-outline mb-4">
+                <input type="password" name="password" placeholder="password" class="form-control" />
+              </div>
+
+              <div class="form-check d-flex justify-content-center mb-4">
+                <a href= "{% url 'reset_password' %}">Forget Password</a>
+              </div>
+
+              <!-- Submit button -->
+              <div class="d-grid gap-2">
+                <button class="btn btn-outline-primary shadow p-2 mb-5  rounded" type="submit">Login</button>
+              </div>
+
+              <!-- Register buttons -->
+              <div class="text-center pt-2">
+                <span>Don't have an account?  <a href= "{% url 'register' %}">Register</a><span>
+                
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-5 photo-margin">
+        <img src="https://mdbootstrap.com/img/new/ecommerce/vertical/004.jpg"  width="450" height="415" class=" rounded-4 shadow-4"
+          alt="" />
+      </div>
+    </div>
+  </div>
+  <!-- Jumbotron -->
+</section>
+<!-- Section: Design Block -->
+
+    </body>
+</html>
+  
+  
+{% comment %} {% for msg in messages %} <strong>{{msg}} </strong> {% endfor %} {% endcomment %}
+
+  
+  
+
+
+
+
+
+
+
+
+

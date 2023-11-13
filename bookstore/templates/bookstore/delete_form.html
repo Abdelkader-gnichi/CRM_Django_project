@@ -1,0 +1,15 @@
+{% extends "bookstore/main.html" %}
+{% load static %}
+
+{% block content %}
+
+<h5 class="p-5"> are you sure you want to delete it ? </h5>
+<form action="" method='POST'>
+    {% csrf_token %}
+    {{order}}
+
+    <a class= "p-5" href="{% url 'home' %}"> return to dashboard</a>
+    <div class= "container p-5"><button type="submit" class="btn  btn-primary">Delete it</button></div>
+    
+  </form>
+{% endblock content %} 

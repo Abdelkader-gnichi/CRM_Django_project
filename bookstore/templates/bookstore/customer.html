@@ -1,0 +1,100 @@
+{% extends "bookstore/main.html" %}
+
+{% block content %}
+ 
+
+
+<div class="container pt-5  ">
+  <form class="row g-3" action="" method="GET">
+    <div class="w-50">
+      <input class="form-control shadow me-2" type="search" placeholder="Search" name="query" aria-label="Search">
+    </div>
+    <div class="col-auto ">
+      <button type="submit" class="btn btn-outline-success shadow-sm mb-3"> Search</button>
+    </div>
+    <div class="col-auto ps-5">
+    <a  class= "btn btn-outline-primary shadow-sm " href=" {% url 'multi_create_order' customer.pk%}">Create Orders</a> 
+    </div>  
+  </form>
+</div>
+
+<h5 class= "pt-4 ps-5 fs-4 fw-bold">Customer</h5>
+
+<div class="container fs-5 pt-3 pb-3">
+    <div class="row align-items-start">
+      <div class="col-md-3 ">
+       First Name: {{customer.user.first_name}}
+      </div>
+      <div class="col-md-3">
+       Last Name: {{customer.user.last_name}}
+      </div>
+      {% comment %} <div class="col">
+        Adress: {{customer.addres}}
+      </div> {% endcomment %}
+      <div class="col">
+        Phone: {{customer.phone}}
+      </div>
+      {% comment %} <div class="col">
+        Phone: {{customer.creation_date}}
+      </div> {% endcomment %}
+      
+    </div>
+    <div class="row  align-items-start">
+      <div class="col">
+        Orders: <span class="badge rounded-pill text-bg-primary"> {{orders_number}} </span>
+      </div>
+      <div class="col-md-3 offset-md-1">
+        Pending: <span class="badge rounded-pill text-bg-danger">{{pending_orders}} </span>
+       </div>
+      <div class="col">
+        Delivered:   <span class="badge rounded-pill text-bg-success"> {{delivered_orders}} </span>
+      </div>
+      <div class="col">
+        In Progress: <span class="badge rounded-pill text-bg-warning"> {{in_progress_orders}} </span>
+       </div>
+      <div class="col">
+        Out Of Order: <span class="badge rounded-pill text-bg-secondary"> {{out_of_orders}} </span>
+      </div>
+      
+    </div>
+</div>
+
+<div class="container"> 
+
+<table class="table shadow">
+    <thead class="table-light">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Book</th>
+        <th scope="col">Category</th>
+        <th scope="col">Status</th>
+        <th scope="col">Creation Date</th>
+        <th scope="col">Actions</th>
+        {% comment %} <th scope="col">status</th> {% endcomment %}
+      </tr>
+    </thead>
+    <tbody>
+        {% for item in customer_orders%}
+        <tr>
+            <th scope="row">{{item.pk}}</th>
+            <td>{{item.book.name}}</td>
+            <td>{{item.book.category}}</td>
+            <td>{{item.status}}</td>
+            <td>{{item.creation_date}}</td>
+            <td>
+                <a href="#"><i class="fa-solid fa-pen-to-square fa-bounce fa-lg" style="color: #2e5fb2;"></i></a>
+                <a href="#"><i class="fa-regular fa-trash-can fa-shake fa-lg" style="color: #f52424;"></i></a>
+            </td>
+            
+        </tr>
+      {% endfor %}
+      
+    </tbody>
+  </table>
+  <div>
+
+
+
+
+
+{% endblock content %}

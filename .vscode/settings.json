@@ -1,0 +1,8 @@
+{
+  "[django-html]": {
+    "editor.formatOnSave": false
+  },
+  "python.analysis.typeCheckingMode": "basic",
+  "python.analysis.autoImportCompletions": true,
+  "cSpell.enableFiletypes": ["django-html"]
+}
